@@ -123,7 +123,6 @@ if ( typeof Object.create !== 'function' ) {
 		            clearInterval(base.checkVisible);
 		        }
 		    }, 500);
-
 		},
 
 		wrapItems : function(){
@@ -131,7 +130,6 @@ if ( typeof Object.create !== 'function' ) {
 			base.userItems.wrapAll("<div class=\"owl-wrapper\">").wrap("<div class=\"owl-item\"></div>");
 			base.$elem.find(".owl-wrapper").wrap("<div class=\"owl-wrapper-outer\">");
 			base.$elem.css("display","block");
-			
 		},
 
 		baseClass : function(){
@@ -176,7 +174,6 @@ if ( typeof Object.create !== 'function' ) {
 			if(width <= base.options.itemsMobile[0] && base.options.itemsMobile !== false){
 				base.options.items = base.options.itemsMobile[1];
 			}
-			
 		},
 		
 
@@ -216,6 +213,7 @@ if ( typeof Object.create !== 'function' ) {
 					base.currentSlide = 0 //in array
 				}
 			}
+			
 			if(base.options.autoPlay !== false){
 				base.checkAp();
 			}
@@ -308,7 +306,6 @@ if ( typeof Object.create !== 'function' ) {
 			if(base.options.navigation === true){
 				base.buildButtons();
 			}
-	
 		},
 
 		buildButtons : function(){
@@ -330,14 +327,14 @@ if ( typeof Object.create !== 'function' ) {
 			.append(base.buttonPrev)
 			.append(base.buttonNext);
 
-			buttonsWrapper.on( base.getEvent() , "div[class^=\"owl\"]", function(event){
+			buttonsWrapper.on(base.getEvent() , "div[class^=\"owl\"]", function(event){
 				event.preventDefault();
 				if($(this).hasClass('owl-next')){
 					base.next();
 				} else{
 					base.prev();
-				} 
-			})
+				}
+			});
 
 			//Add 'disable' class
 			base.checkNavigation();
@@ -346,9 +343,9 @@ if ( typeof Object.create !== 'function' ) {
 		getEvent : function(){
 			var base = this;
 			if (base.isTouch === true){
-				return "touchstart.owlControlls"
+				return "touchstart.owlControlls";
 			} else {
-				return "click.owlControlls"
+				return "click.owlControlls";
 			}
 		},
 
@@ -361,11 +358,10 @@ if ( typeof Object.create !== 'function' ) {
 			base.paginationWrapper.on(base.getEvent(), ".owl-page", function(event){
 				event.preventDefault();
 				if(Number($(this).data("owl-page")) !== base.currentSlide){
-					base.goTo( Number($(this).data("owl-page")), true)
+					base.goTo( Number($(this).data("owl-page")), true);
 				}
 			});
 			base.updatePagination();
-			
 		},
 
 		updatePagination : function(){
@@ -376,13 +372,13 @@ if ( typeof Object.create !== 'function' ) {
 			base.paginationWrapper.html("");
 
 			var counter = 0;
-			var lastPage = base.itemsAmount - base.itemsAmount % base.options.items
+			var lastPage = base.itemsAmount - base.itemsAmount % base.options.items;
 
 			for(var i = 0; i<base.itemsAmount; i++){
 				if(i % base.options.items === 0){
-					counter +=1
+					counter +=1;
 					if(lastPage === i){
-						var lastItem = base.itemsAmount - base.options.items
+						var lastItem = base.itemsAmount - base.options.items;
 					}
 					var paginationButton = $("<div/>",{
 						"class" : "owl-page"
@@ -391,16 +387,17 @@ if ( typeof Object.create !== 'function' ) {
 						"text": base.options.paginationNumbers === true ? counter : "",
 						"class": base.options.paginationNumbers === true ? "owl-numbers" : ""
 					});
-					paginationButton.append(paginationButtonInner)
+					paginationButton.append(paginationButtonInner);
 
 					paginationButton.data("owl-page",lastPage === i ? lastItem : i);
 					paginationButton.data("owl-roundPages",counter);
 
-					base.paginationWrapper.append(paginationButton)
+					base.paginationWrapper.append(paginationButton);
 				}
 			}
 			base.checkPagination();
 		},
+		
 		checkPagination : function(arg){
 			var base = this;
 
@@ -425,12 +422,12 @@ if ( typeof Object.create !== 'function' ) {
 				return false;
 			}
 
-                        if(base.currentSlide === 0 && base.maximumSlide === 0){
-                                base.buttonPrev.addClass('disabled');
-                                base.buttonNext.addClass('disabled');
-                        } else if(base.currentSlide === 0 && base.maximumSlide !== 0){
-                                base.buttonPrev.addClass('disabled');
-                                base.buttonNext.removeClass('disabled');
+            if(base.currentSlide === 0 && base.maximumSlide === 0){
+                base.buttonPrev.addClass('disabled');
+                base.buttonNext.addClass('disabled');
+            } else if(base.currentSlide === 0 && base.maximumSlide !== 0){
+                base.buttonPrev.addClass('disabled');
+                base.buttonNext.removeClass('disabled');
 			} else if (base.currentSlide === base.maximumSlide){
 				base.buttonPrev.removeClass('disabled');
 				base.buttonNext.addClass('disabled');
@@ -471,10 +468,10 @@ if ( typeof Object.create !== 'function' ) {
 			var base = this;
 
 			if(position >= base.maximumSlide){
-				position = base.maximumSlide
+				position = base.maximumSlide;
 			} 
-			else if( position <= 0 ){
-				position = 0
+			else if(position <= 0){
+				position = 0;
 			}
 			base.currentSlide = position;
 
@@ -488,13 +485,11 @@ if ( typeof Object.create !== 'function' ) {
 					setTimeout(function() {
     					base.isCss3Finish = true;
     				}, base.options.paginationSpeed);
-
     			} else if(pagination === "goToFirst" ){
     				base.swapTransitionSpeed(base.options.goToFirstSpeed);
     				setTimeout(function() {
     					base.isCss3Finish = true;
     				}, base.options.goToFirstSpeed);
-
     			} else {
 					base.swapTransitionSpeed("slideSpeed");
 					setTimeout(function() {
@@ -513,10 +508,10 @@ if ( typeof Object.create !== 'function' ) {
 			}
 
 			if(base.options.pagination === true){
-				base.checkPagination()
+				base.checkPagination();
 			}
 			if(base.options.navigation === true){
-				base.checkNavigation()
+				base.checkNavigation();
 			}
 			if(base.options.autoPlay !== false){
 				base.checkAp();
@@ -559,7 +554,7 @@ if ( typeof Object.create !== 'function' ) {
 					base.playDirection = "next";
 					base.next(true);
 				}
-			},base.options.autoPlay)	
+			},base.options.autoPlay);
 		},
 
 		swapTransitionSpeed : function(action){
@@ -580,15 +575,16 @@ if ( typeof Object.create !== 'function' ) {
 				"-moz-transition": "all "+ speed +"ms ease",
 				"-o-transition": "all "+ speed +"ms ease",
 				"transition": "all "+ speed +"ms ease"
-            }
+            };
         },
+        
         removeTransition : function(){
 			return {
                 "-webkit-transition": "",
 				"-moz-transition": "",
 				"-o-transition": "",
 				"transition": ""
-            }
+            };
         },
 
         doTranslate : function(pixels){
@@ -598,17 +594,19 @@ if ( typeof Object.create !== 'function' ) {
                 "-o-transform": "translate3d("+pixels+"px, 0px, 0px)",
                 "-ms-transform": "translate3d("+pixels+"px, 0px, 0px)",
                 "transform": "translate3d("+pixels+"px, 0px,0px)"
-                };
+            };
         },
 
         transition3d : function(value){
 			var base = this;
 			base.owlWrapper.css(base.doTranslate(value));
 		},
+		
 		css2move : function(value){
 			var base = this;
 			base.owlWrapper.css({"left" : value})
 		},
+		
 		css2slide : function(value,speed){
 			var base = this;
 
@@ -620,30 +618,29 @@ if ( typeof Object.create !== 'function' ) {
 			    complete : function(){
 			    	base.isCssFinish = true;
 				}
-			})
+			});
 		},
 
 		support3d : function(){
-				var base = this;
-				
-		    	var sTranslate3D = "translate3d(0px, 0px, 0px)";
-			    var eTemp = document.createElement("div");
-			    eTemp.style.cssText = "  -moz-transform:"    + sTranslate3D +
-			                          "; -ms-transform:"     + sTranslate3D +
-			                          "; -o-transform:"      + sTranslate3D +
-			                          "; -webkit-transform:" + sTranslate3D +
-			                          "; transform:"         + sTranslate3D;
-			    var rxTranslate = /translate3d\(0px, 0px, 0px\)/g;
-			    var asSupport = eTemp.style.cssText.match(rxTranslate);
-			    var bHasSupport = (asSupport !== null && asSupport.length === 1);
-			    base.support3d = bHasSupport
-			    return bHasSupport;
+			var base = this;
+			
+		    var sTranslate3D = "translate3d(0px, 0px, 0px)";
+			var eTemp = document.createElement("div");
+			eTemp.style.cssText = "  -moz-transform:"    + sTranslate3D +
+			                      "; -ms-transform:"     + sTranslate3D +
+			                      "; -o-transform:"      + sTranslate3D +
+			                      "; -webkit-transform:" + sTranslate3D +
+			                      "; transform:"         + sTranslate3D;
+			var rxTranslate = /translate3d\(0px, 0px, 0px\)/g;
+			var asSupport = eTemp.style.cssText.match(rxTranslate);
+			var bHasSupport = (asSupport !== null && asSupport.length === 1);
+			base.support3d = bHasSupport
+			return bHasSupport;
 		},
 		
 		checkTouch : function(){
 			var base = this;
-			if ("ontouchstart" in document.documentElement)
-			{
+			if ("ontouchstart" in document.documentElement){
 				base.isTouch = true;
 			} else {
 				base.isTouch = false;
@@ -652,7 +649,6 @@ if ( typeof Object.create !== 'function' ) {
 
 		//Touch
 		moveEvents : function(check){
-
 			var	base = this,
             	offsetX = 0,
             	offsetY = 0,
@@ -703,7 +699,6 @@ if ( typeof Object.create !== 'function' ) {
             	if(jQuery._data( base.$elem.get(0), "events" ).touchmove === undefined){
             		base.$elem.on("touchmove.owl", ".owl-wrapper", move);
             	}
-
             };
 
             var move = function(event){
@@ -741,7 +736,6 @@ if ( typeof Object.create !== 'function' ) {
                 } else {
                 	base.css2move(base.newX);
                 }
-
             };
 
              var end = function(event){
@@ -769,12 +763,12 @@ if ( typeof Object.create !== 'function' ) {
             if(base.isTouch === true){
             	base.$elem.on("touchstart.owl", ".owl-wrapper", start);
 	    		base.$elem.on("touchend.owl", ".owl-wrapper", end);
-            }else{
+            } else{
             	links.on('click.owlClick', function(event){event.preventDefault();})
             	base.$elem.on("mousedown.owl", ".owl-wrapper", start);            	
 			 	base.$elem.on('dragstart.owl',"img", function(event) { event.preventDefault();});
 			 	base.$elem.bind('mousedown.disableTextSelect', function() {return false;});
-			 }
+			}
 		},
 
 		clearEvents : function(){
@@ -830,6 +824,7 @@ if ( typeof Object.create !== 'function' ) {
 			}
 			return direction
 		},
+		
 		customEvents : function(){
 			var base = this;
 			base.$elem.on('owl.next',function(){
@@ -847,6 +842,7 @@ if ( typeof Object.create !== 'function' ) {
 				base.hoverStatus = "stop";
 			});
 		},
+		
 		stopOnHover : function(){
 			var base = this;
 			if(base.options.stopOnHover === true && base.isTouch === false && base.options.autoPlay !== false){
@@ -863,7 +859,7 @@ if ( typeof Object.create !== 'function' ) {
     };
 
 
-    $.fn.owlCarousel = function( options ) {
+    $.fn.owlCarousel = function( options ){
         return this.each(function() {
             var carousel = Object.create( Carousel );
             carousel.init( options, this );
