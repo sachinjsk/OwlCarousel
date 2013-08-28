@@ -425,7 +425,7 @@ if ( typeof Object.create !== 'function' ) {
 				return false;
 			}
 
-                        if(base.currentSlide === 0 && base.maximumSlide == 0){
+                        if(base.currentSlide === 0 && base.maximumSlide === 0){
                                 base.buttonPrev.addClass('disabled');
                                 base.buttonNext.addClass('disabled');
                         } else if(base.currentSlide === 0 && base.maximumSlide !== 0){
