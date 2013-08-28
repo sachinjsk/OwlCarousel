@@ -425,10 +425,12 @@ if ( typeof Object.create !== 'function' ) {
 				return false;
 			}
 
-			if(base.currentSlide === 0){
-				base.buttonPrev.addClass('disabled');
-				base.buttonNext.removeClass('disabled');
-
+                        if(base.currentSlide === 0 && base.maximumSlide == 0){
+                                base.buttonPrev.addClass('disabled');
+                                base.buttonNext.addClass('disabled');
+                        } else if(base.currentSlide === 0 && base.maximumSlide !== 0){
+                                base.buttonPrev.addClass('disabled');
+                                base.buttonNext.removeClass('disabled');
 			} else if (base.currentSlide === base.maximumSlide){
 				base.buttonPrev.removeClass('disabled');
 				base.buttonNext.addClass('disabled');
